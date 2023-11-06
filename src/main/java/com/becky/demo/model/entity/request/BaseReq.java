@@ -1,6 +1,5 @@
 package com.becky.demo.model.entity.request;
 
-import com.becky.demo.exception.BadRequestException;
 import io.micrometer.core.instrument.util.StringUtils;
 import lombok.EqualsAndHashCode;
 import org.joda.time.DateTime;
@@ -14,6 +13,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
+import javax.ws.rs.BadRequestException;
 
 @EqualsAndHashCode(callSuper = false)
 public class BaseReq {
