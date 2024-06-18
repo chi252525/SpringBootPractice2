@@ -5,14 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-public class ProjectRuntimeException extends RuntimeException {
+public class AppRuntimeException extends RuntimeException {
     private ErrorEnum errorEnum;
 
-    public ProjectRuntimeException() {
+    public AppRuntimeException() {
         super();
     }
 
-    public ProjectRuntimeException(ErrorEnum errorEnum, Object... params) {
+
+    public AppRuntimeException(ErrorEnum errorEnum, Object... params) {
         super(params.toString());
         this.errorEnum = errorEnum;
     }

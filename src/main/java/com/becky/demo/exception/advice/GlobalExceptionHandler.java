@@ -37,18 +37,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return getResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error");
     }
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ErrorResponse> handleMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
-        return getResponse(HttpStatus.METHOD_NOT_ALLOWED, e.getMessage());
-    }
+//    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+//    public ResponseEntity<ErrorResponse> handleMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+//        return getResponse(HttpStatus.METHOD_NOT_ALLOWED, e.getMessage());
+//    }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorResponse> handleInvalidJson(HttpMessageNotReadableException e) {
-        if (e.getRootCause() instanceof BadRequestException) {
-            return getResponse(HttpStatus.BAD_REQUEST, e.getRootCause().getMessage());
-        }
-        return getResponse(HttpStatus.BAD_REQUEST, "Invalid Json in request body");
-    }
+//Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.servlet.HandlerExceptionResolver]: Factory method 'handlerExceptionResolver' threw exception; nested exception is java.lang.IllegalStateException: Ambiguous @ExceptionHandler method mapped for [class org.springframework.http.converter.HttpMessageNotReadableException]: {public org.springframework.http.ResponseEntity com.becky.demo.exception.advice.GlobalExceptionHandler.handleInvalidJson(org.springframework.http.converter.HttpMessageNotReadableException), public final org.springframework.http.ResponseEntity org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler.handleException(java.lang.Exception,org.springframework.web.context.request.WebRequest) throws java.lang.Exception}
+
+//    @ExceptionHandler(HttpMessageNotReadableException.class)
+//    public ResponseEntity<ErrorResponse> handleInvalidJson(HttpMessageNotReadableException e) {
+//        if (e.getRootCause() instanceof BadRequestException) {
+//            return getResponse(HttpStatus.BAD_REQUEST, e.getRootCause().getMessage());
+//        }
+//        return getResponse(HttpStatus.BAD_REQUEST, "Invalid Json in request body");
+//    }
 
     @ExceptionHandler(BindException.class)
     public ResponseEntity<ErrorResponse> handleInvalidArgumentTypes() {

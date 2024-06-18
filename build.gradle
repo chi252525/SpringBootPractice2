@@ -46,11 +46,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-//    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-mysql'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.1'
     implementation 'org.springframework.session:spring-session-core'
+
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -65,6 +67,8 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     implementation group: 'joda-time', name: 'joda-time', version: '2.3'
     implementation 'jakarta.platform:jakarta.jakartaee-api:10.0.0'
+// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 
 }
 
@@ -92,4 +96,10 @@ processResources {
     from('src/main/java') {
         include '**/*.xml'
     }
+}
+bootRun {
+    if (System.getProperty("jvmArgs") != "" && System.getProperty("jvmArgs") != null) {
+        jvmArgs = (System.getProperty("jvmArgs").split("\\s+") as List)
+    }
+    jvmArgs = ["-Dspring.profiles.active=dev,receiver", "-Dfile.encoding=UTF-8"]
 }

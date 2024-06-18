@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @InternalAPIController
 @RestController
-@RequestMapping("/public-api")
+@RequestMapping("/internal-api")
 public class UserInternalController {
 }

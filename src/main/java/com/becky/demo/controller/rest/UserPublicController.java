@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @PublicAPIController
 @RestController
 @RequestMapping("/public-api")
@@ -18,6 +19,6 @@ public class UserPublicController {
 
     @PostMapping("/user/create")
     public UserRsp createUser(@RequestBody UserReq req) {
-        return userService.insert(req);
+        return userService.addUser(req);
     }
 }

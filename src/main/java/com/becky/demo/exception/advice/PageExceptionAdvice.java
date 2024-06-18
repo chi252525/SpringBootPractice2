@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice(basePackages = {"com.becky.demo.controller.page"})
 @Order(50)
 public class PageExceptionAdvice {
-    @ExceptionHandler
-    public ModelAndView handleException(HttpServletRequest req, AccessDeniedException e){
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(HttpServletRequest req, AccessDeniedException e) {
         ModelAndView mv = new ModelAndView("accessdenied");
-        mv.addObject("message",e.getErrorCode().toString());
+        mv.addObject("message", e.getErrorEnum().getFormattedMessage());
         return mv;
     }
 }

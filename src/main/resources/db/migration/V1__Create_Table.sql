@@ -1,10 +1,69 @@
- CREATE TABLE user (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    create_timeStamp TIMESTAMP,
-    update_timeStamp TIMESTAMP,
-    name VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email_address VARCHAR(255),
-    enabled BIGINT,
-    last_login_at TIMESTAMP
-);
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE user
+  (
+     id                BIGINT PRIMARY KEY auto_increment,
+     create_time_stamp TIMESTAMP,
+     update_time_stamp TIMESTAMP,
+     name              VARCHAR(255) NOT NULL,
+     password          VARCHAR(255) NOT NULL,
+     email_address     VARCHAR(255)
+  );
+
+INSERT INTO user
+            (create_time_stamp,
+             update_time_stamp,
+             name,
+             password,
+             email_address)
+VALUES      (Now(),
+             Now(),
+             'admin',
+             '1234',
+             'chi252525@hotmail.com.tw');
+
+INSERT INTO user
+            (create_time_stamp,
+             update_time_stamp,
+             name,
+             password,
+             email_address)
+VALUES      (Now(),
+             Now(),
+             'user',
+             '1234',
+             'chi2525252@hotmail.com.tw');
+
+
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE user_role
+  (
+     `id`   BIGINT(20) NOT NULL,
+     `name` CHAR(50) NOT NULL
+  );
+
+INSERT INTO user_role
+            (id,
+             name)
+VALUES     (1,
+            'ROLE_ADMIN');
+
+INSERT INTO user_role
+            (id,
+             name)
+VALUES     (2,
+            'ROLE_USER');
+DROP TABLE IF EXISTS `user_role_privilege_mapping`;
+CREATE TABLE user_role_privilege_mapping
+  (
+     `id`          BIGINT(20) NOT NULL,
+     `sys_role_id` BIGINT(20) NOT NULL,
+     `user_id`     BIGINT(20) NOT NULL
+  );
+
+INSERT INTO user_role_privilege_mapping
+            (id,
+             sys_role_id,
+             user_id)
+VALUES     (1,
+            1,
+            1);
